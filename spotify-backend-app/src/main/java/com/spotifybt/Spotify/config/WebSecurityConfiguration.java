@@ -22,7 +22,7 @@ public class WebSecurityConfiguration {
             .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilita CORS
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.GET, "/", "/test","/login/**","/user/**", "/auth/spotify", "/auth/spotify/callback", "/me/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/", "/test","/login/**","/user/**","/spotify/**", "/auth/spotify", "/auth/spotify/callback", "/me/**").permitAll()
                 .anyRequest().authenticated()
             )
             .httpBasic(http -> http.disable());
