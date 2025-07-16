@@ -1,8 +1,8 @@
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './components/pages/Login';
-import Callback from './components/pages/Callback';
-import Dashboard from './components/Dashboard/Dashboard';
+import Callback from './components/pageComponents/Callback';
+import Layout from './components/pages/Layout';
 import { AuthProvider } from './components/auth/AuthContext';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/callback" element={<Callback />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/home" element={<Layout />} />
         </Routes>
       </BrowserRouter>
       </AuthProvider>

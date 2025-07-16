@@ -12,7 +12,7 @@ const Login = () => {
       alignItems="center" 
       justifyContent="center" 
       height="100vh"
-      bg="purple.800"
+      bg="black"
       color="white"
       >
      

@@ -11,7 +11,7 @@ const Callback = () => {
     const token = searchParams.get('access_token');
     if (token) {
       setAccessToken(token);
-      navigate('/dashboard');
+      navigate('/home');
     }
   }, []);
 
