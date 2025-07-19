@@ -74,4 +74,8 @@ public class AccessTokenManager {
         System.out.println("Failed to refresh access token.");
         return false;
     }
+
+    public String getAccessToken() {
+        return tokenCache.getAccessToken();
+    }
 }

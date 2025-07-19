@@ -1,10 +1,11 @@
-import { Box, Heading, SimpleGrid, Spinner, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, SimpleGrid, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from '../pageComponents/SearchBar';
 import { useAuth } from '../auth/AuthContext';
 import ArtistCard from '../pageComponents/ArtistCard';
 import ResultSection from '../pageComponents/ResultSection';
+import { useNavigate } from 'react-router-dom';
 
 interface Artist {
   id: string;
@@ -14,11 +15,12 @@ interface Artist {
 }
 
 const Layout = () => {
-  const { accessToken } = useAuth();
+  const { accessToken, logout } = useAuth();
   const [topArtists, setTopArtists] = useState<Artist[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState<any>(null);
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!accessToken) return;
@@ -52,17 +54,26 @@ const Layout = () => {
       .catch((err) => console.error('Error searching:', err));
   };
 
-  if (!accessToken) {
-    return <Text color="red.500">Please login first.</Text>;
-  }
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <Box p={6}>
-      <SearchBar onSearch={handleSearch} />
+      <Flex gap={4} align="center" mb={6}>
+        <Box flex="1">
+            <SearchBar onSearch={handleSearch} />
+        </Box>
+          <Button colorScheme="blackAlpha" onClick={handleLogout}>
+            Logout
+          </Button>
+      </Flex>
+
 
       {query.trim() === '' ? (
         <>
-          <Heading mt={8} size="md">
+          <Heading mt={4} size="3xl">
             Your Top Artists
           </Heading>
           {loading ? (
@@ -76,10 +87,7 @@ const Layout = () => {
           )}
         </>
       ) : (
-        <>
-          <Heading mt={8} size="md">Top Result</Heading>
-          <ResultSection results={searchResults} />
-        </>
+        <ResultSection results={searchResults} />
       )}
     </Box>
   );
