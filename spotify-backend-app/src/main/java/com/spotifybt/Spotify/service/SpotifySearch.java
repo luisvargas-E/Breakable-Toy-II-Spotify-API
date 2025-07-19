@@ -63,9 +63,10 @@ public class SpotifySearch {
                 String id = track.path("id").asText();
                 String name = track.path("name").asText();
                 String artistName = track.path("artists").get(0).path("name").asText();
+                String artistId = track.get("artists").get(0).get("id").asText();
                 String image = track.path("album").path("images").get(0).path("url").asText();
                 String spotifyUrl = track.path("external_urls").path("spotify").asText();
-                tracks.add(new TrackDto(id, name, artistName, image, spotifyUrl));
+                tracks.add(new TrackDto(id, name, artistName,artistId, image, spotifyUrl));
             }
 
             // ALBUMS
