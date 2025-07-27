@@ -90,7 +90,7 @@ public class SpotifySearch {
         }
     }
 
-    private ResponseEntity<String> sendSearchRequest(String query, String type, String token) {
+    protected ResponseEntity<String> sendSearchRequest(String query, String type, String token) {
         RestTemplate client = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);

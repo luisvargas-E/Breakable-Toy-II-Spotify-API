@@ -1,33 +1,39 @@
-/*Spotify Config*/
 package com.spotifybt.Spotify.config;
 
+import io.github.cdimascio.dotenv.Dotenv;
+import jakarta.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * Configuración general para las credenciales y URLs necesarias para interactuar con la API de Spotify.
  */
-@Configuration
+@Component
 public class SpotifySettings {
 
-    @Value("${spotify.client-id}")
-    private String id;
+    private final String id;
+    private final String secret;
+    private final String callbackUrl;
+    private final String authEndpoint;
+    private final String tokenEndpoint;
+    private final String permissionScope;
+    private final String frontendUrl;
 
-    @Value("${spotify.client-secret}")
-    private String secret;
 
-    @Value("${spotify.redirect-uri}")
-    private String callbackUrl;
+    public SpotifySettings(Dotenv dotenv) {
+        this.id = dotenv.get("SPOTIFY_CLIENT_ID");
+        this.secret = dotenv.get("SPOTIFY_CLIENT_SECRET");
+        this.callbackUrl = dotenv.get("SPOTIFY_REDIRECT_URI");
+        this.authEndpoint = dotenv.get("SPOTIFY_AUTHORIZE_URL");
+        this.tokenEndpoint = dotenv.get("SPOTIFY_TOKEN_URL");
+        this.permissionScope = dotenv.get("SPOTIFY_SCOPES");
+        this.frontendUrl = dotenv.get("FRONTEND_URL");
 
-    @Value("${spotify.authorize-url}")
-    private String authEndpoint;
 
-    @Value("${spotify.token-url}")
-    private String tokenEndpoint;
-
-    @Value("${spotify.scopes}")
-    private String permissionScope;
+        System.out.println("🎯 Loaded from .env:");
+        System.out.println("clientId: " + id);
+        System.out.println("callbackUrl: " + callbackUrl);
+    }
 
     // Métodos de acceso públicos (getters)
 
@@ -54,4 +60,14 @@ public class SpotifySettings {
     public String getPermissionScope() {
         return permissionScope;
     }
+
+    public String getFrontendUrl() {
+    return frontendUrl;
 }
+
+    
+
+
+}
+
+

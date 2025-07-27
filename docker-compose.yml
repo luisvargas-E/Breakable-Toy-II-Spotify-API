@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./spotify-backend-app
+      dockerfile: Dockerfile
+    container_name: spotify-backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./spotify-backend-app/.env  # 👈 Lee las variables desde el .env del backend
+
+  frontend:
+    build:
+      context: ./spotify-frontend-app
+      dockerfile: Dockerfile
+    container_name: spotify-frontend
+    ports:
+      - "5173:80"
+    env_file:
+      - ./spotify-frontend-app/.env  # 👈 Lee las variables desde el .env del frontend
