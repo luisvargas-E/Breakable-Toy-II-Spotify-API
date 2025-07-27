@@ -87,7 +87,7 @@ const AlbumDetailsPage = () => {
           <Text mt={2}>
             Artist:{' '}
             <RouterLink to={`/artist/${album.tracks[0]?.artistId}`}>
-              <Text as="span" color="teal.500" fontWeight="semibold">
+              <Text as="span" color="green.500" fontWeight="semibold">
                 {album.artistName}
               </Text>
             </RouterLink>
@@ -116,7 +116,7 @@ const AlbumDetailsPage = () => {
             </Text>
             <Box flex="1">
              
-                <Text fontWeight="semibold" color="teal.500">
+                <Text fontWeight="semibold" color="green.500">
                   {track.name}
                 </Text>
               

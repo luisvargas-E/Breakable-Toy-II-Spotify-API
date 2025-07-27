@@ -76,7 +76,7 @@ public ResponseEntity<Void> receiveSpotifyCode(@RequestParam("code") String code
         cache.saveRefreshToken(refreshToken);
 
         // 🔁 Redirige al frontend con el token en la URL
-        String redirectUrl = "http://localhost:5173/callback?access_token=" + accessToken;
+        String redirectUrl = settings.getFrontendUrl() + "/callback?access_token=" + accessToken;
         return ResponseEntity.status(HttpStatus.FOUND)
                 .location(URI.create(redirectUrl))
                 .build();

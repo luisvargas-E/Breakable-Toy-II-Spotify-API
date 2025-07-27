@@ -7,6 +7,11 @@ public class SearchResultDto {
     private List<TrackDto> tracks;
     private List<AlbumDto> albums;
 
+    public SearchResultDto() {
+    // Necesario para instanciación sin argumentos (test y deserialización)
+}
+
+
     public SearchResultDto(List<ArtistDto> artists, List<TrackDto> tracks, List<AlbumDto> albums) {
         this.artists = artists;
         this.tracks = tracks;

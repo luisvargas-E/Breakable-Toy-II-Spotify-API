@@ -60,7 +60,7 @@ const Layout = () => {
   };
 
   return (
-    <Box p={6}>
+    <Box p={6} >
       <Flex gap={4} align="center" mb={6}>
         <Box flex="1">
             <SearchBar onSearch={handleSearch} />
@@ -77,7 +77,7 @@ const Layout = () => {
             Your Top Artists
           </Heading>
           {loading ? (
-            <Spinner mt={4} />
+            <Spinner mt={4}  data-testid="spinner"/>
           ) : (
             <SimpleGrid columns={5} gap={4} mt={4}>
               {topArtists.map((artist) => (

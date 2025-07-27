@@ -80,7 +80,7 @@ public class UserMusicController {
     /**
      * Makes the request to Spotify's API to fetch top artists.
      */
-    private ResponseEntity<String> requestTopArtistsFromSpotify(String token) {
+    public ResponseEntity<String> requestTopArtistsFromSpotify(String token) {
         RestTemplate client = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
